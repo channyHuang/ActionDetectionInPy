@@ -1,7 +1,8 @@
-import cv2
 import time
 import math
 import multiprocessing
+
+import cv2
 
 from StreamInC import streamInC
 from ThreadPool import threadPool

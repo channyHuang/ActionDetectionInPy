@@ -1,6 +1,7 @@
+import threading
+
 import cv2
 import numpy as np
-import threading
 import torch
 
 from models.experimental import attempt_load
@@ -209,11 +210,35 @@ inference = Inference()
 if __name__ == '__main__':
     inference.init()
     cap = cv2.VideoCapture('video.avi')
+
+    width = 1280
+    height = 640
+    video = None
+
+    bWrite = False
+    bFirst = True
+
     while cap.isOpened():
         res, frame = cap.read()
         if res == False:
             break
-        frame = inference.detect(frame)
-        cv2.imshow('res', frame)
-        cv2.waitKey(1)  # 1 millisecond
+
+        if bFirst:
+            width = frame.shape[1]
+            height = frame.shape[0]
+            if bWrite:
+                video = cv2.VideoWriter('result.mp4', cv2.VideoWriter_fourcc(*'mp4v'), 30, (width * 2, height))
+            bFirst = False
+        origin_frame = frame.copy()
+        res_frame = inference.detect(frame)
+        # cv2.imshow('res', res_frame)
+        # cv2.waitKey(1)  # 1 millisecond
+        if bWrite:
+            final_image = np.zeros((height, width * 2, 3), dtype = np.uint8)
+            final_image[:, :width, :] = origin_frame
+            final_image[:, width:, :] = res_frame
+            video.write(final_image)
+    if bWrite:
+        video.release()
+
     cv2.destroyAllWindows()
