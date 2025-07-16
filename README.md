@@ -25,9 +25,12 @@ _pickle.UnpicklingError: Weights only load failed. This file can still be loaded
 ```
 
 # Result
-![结果视频显示](./result.mp4)
+[结果视频显示](https://github.com/channyHuang/ActionDetectionInPy/blob/main/result.mp4)
 
-<video controls width="500">
-    <source src="./result.mp4" type="video/mp4">
+
+<video src="https://github.com/channyHuang/ActionDetectionInPy/blob/main/result.mp4" width="100%" controls></video>
+
+<video controls width="100%">
+    <source src="result.mp4" type="video/mp4">
     不支持视频标签。
 </video>
