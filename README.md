@@ -26,3 +26,5 @@ _pickle.UnpicklingError: Weights only load failed. This file can still be loaded
 
 # Result
 <video src="result.mp4" width="100%" controls></video>
+
+![res_frame](./res_frame.jpg)
